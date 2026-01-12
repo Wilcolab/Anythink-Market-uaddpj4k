@@ -38,34 +38,31 @@
       onStart("%REACT_APP_WILCO_ID%", "opened_locally");
     </script>
 
-    <script>
-      let displayValue = '';
 
-      function operationPressed(operation) {
-        if (operation === '^') {
-          const base = prompt('Enter base number:');
-          const exponent = prompt('Enter exponent:');
-          
-          if (base !== null && exponent !== null) {
-            const result = Math.pow(parseFloat(base), parseFloat(exponent));
-            displayValue = result;
-            console.log(`${base}^${exponent} = ${result}`);
-            alert(`${base}^${exponent} = ${result}`);
-          }
-        } else {
-          displayValue += operation;
-          console.log('Operation:', operation, 'Display:', displayValue);
-        }
-      }
-    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <title>Anythink Market</title>
   </head>
   <body>
     <div id="root"></div>
     <div id="wilco"></div>
-    <button class="btn" onClick="operationPressed('^')">
-      Calculate
-    </button>
   </body>
 </html>
