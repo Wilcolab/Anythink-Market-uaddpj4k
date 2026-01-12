@@ -47,19 +47,29 @@
       });
 
       function calculatePower() {
-        const base = document.getElementById('baseInput').value;
-        const exponent = document.getElementById('exponentInput').value;
+        const baseValue = document.getElementById('baseInput').value;
+        const exponentValue = document.getElementById('exponentInput').value;
         const resultDiv = document.getElementById('powerResult');
         
-        if (base && exponent) {
-          const result = Math.pow(parseFloat(base), parseFloat(exponent));
-          console.log(`${base}^${exponent} = ${result}`);
-          resultDiv.textContent = `${base}^${exponent} = ${result}`;
+        const base = parseFloat(baseValue);
+        const exponent = parseFloat(exponentValue);
+        
+        if (!baseValue || isNaN(base)) {
+          resultDiv.textContent = 'Please enter a valid base number';
           resultDiv.style.display = 'block';
-        } else {
-          resultDiv.textContent = 'Please enter both base and exponent';
-          resultDiv.style.display = 'block';
+          return;
         }
+        
+        if (!exponentValue || isNaN(exponent)) {
+          resultDiv.textContent = 'Please enter a valid exponent';
+          resultDiv.style.display = 'block';
+          return;
+        }
+        
+        const result = Math.pow(base, exponent);
+        console.log(`${base}^${exponent} = ${result}`);
+        resultDiv.textContent = `${base}^${exponent} = ${result}`;
+        resultDiv.style.display = 'block';
       }
     </script>
 
