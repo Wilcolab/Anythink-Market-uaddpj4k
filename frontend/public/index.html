@@ -38,31 +38,46 @@
       onStart("%REACT_APP_WILCO_ID%", "opened_locally");
     </script>
 
+    <script>
+      let displayValue = '';
 
+      function updateDisplay() {
+        const displayElement = document.getElementById('calculator-display');
+        if (displayElement) {
+          displayElement.textContent = displayValue || '0';
+        }
+      }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      function operationPressed(operation) {
+        if (operation === '^') {
+          const base = prompt('Enter base number:');
+          const exponent = prompt('Enter exponent:');
+          
+          if (base !== null && exponent !== null) {
+            const result = Math.pow(parseFloat(base), parseFloat(exponent));
+            displayValue = result.toString();
+            updateDisplay();
+            console.log(`${base}^${exponent} = ${result}`);
+          }
+        } else {
+          displayValue += operation;
+          updateDisplay();
+          console.log('Operation:', operation, 'Display:', displayValue);
+        }
+      }
+    </script>
 
     <title>Anythink Market</title>
   </head>
   <body>
     <div id="root"></div>
     <div id="wilco"></div>
+    <div style="position: fixed; top: 10px; right: 10px; padding: 20px; background: #f0f0f0; border: 2px solid #333; border-radius: 8px; font-family: monospace;">
+      <div style="font-weight: bold; margin-bottom: 10px;">Calculator Display:</div>
+      <div id="calculator-display" style="font-size: 24px; padding: 10px; background: white; border: 1px solid #999; min-width: 150px; text-align: right;">0</div>
+      <button class="btn" onClick="operationPressed('^')" style="margin-top: 10px; width: 100%;">
+        Power (x^y)
+      </button>
+    </div>
   </body>
 </html>
