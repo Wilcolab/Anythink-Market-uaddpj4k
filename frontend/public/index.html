@@ -47,7 +47,18 @@
           const exponent = prompt('Enter exponent:');
           
           if (base !== null && exponent !== null) {
-            const result = Math.pow(parseFloat(base), parseFloat(exponent));
+            const baseNum = parseFloat(base);
+            const expNum = parseFloat(exponent);
+            
+            if (isNaN(baseNum) || isNaN(expNum)) {
+              const displayElement = document.getElementById('calculator-display');
+              if (displayElement) {
+                displayElement.textContent = 'Error: Invalid input';
+              }
+              return;
+            }
+            
+            const result = Math.pow(baseNum, expNum);
             displayValue = result;
             console.log(`${base}^${exponent} = ${result}`);
             
