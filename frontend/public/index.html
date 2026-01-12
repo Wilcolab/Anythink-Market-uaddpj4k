@@ -54,8 +54,16 @@
           const exponent = prompt('Enter exponent:');
           
           if (base !== null && exponent !== null) {
-            const result = Math.pow(parseFloat(base), parseFloat(exponent));
-            displayValue = result;
+            const baseNum = parseFloat(base);
+            const expNum = parseFloat(exponent);
+            
+            if (isNaN(baseNum) || isNaN(expNum)) {
+              alert('Please enter valid numbers');
+              return;
+            }
+            
+            const result = Math.pow(baseNum, expNum);
+            displayValue = String(result);
             updateDisplay();
             console.log(`${base}^${exponent} = ${result}`);
             alert(`${base}^${exponent} = ${result}`);
