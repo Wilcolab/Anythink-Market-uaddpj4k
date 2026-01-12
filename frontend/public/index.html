@@ -54,11 +54,19 @@
           const exponent = prompt('Enter exponent:');
           
           if (base !== null && exponent !== null) {
-            const result = Math.pow(parseFloat(base), parseFloat(exponent));
-            displayValue = result.toString();
-            updateDisplay();
-            console.log(`${base}^${exponent} = ${result}`);
-            alert(`${base}^${exponent} = ${result}`);
+            const baseNum = parseFloat(base);
+            const expNum = parseFloat(exponent);
+            
+            if (isNaN(baseNum) || isNaN(expNum)) {
+              displayValue = 'Error: Invalid input';
+              updateDisplay();
+              console.log('Invalid input: base or exponent is not a number');
+            } else {
+              const result = Math.pow(baseNum, expNum);
+              displayValue = result.toString();
+              updateDisplay();
+              console.log(`${base}^${exponent} = ${result}`);
+            }
           }
         } else {
           displayValue += operation;
