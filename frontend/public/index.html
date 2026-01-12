@@ -39,7 +39,7 @@
     </script>
 
     <script>
-      let displayValue = '';
+      let displayValue = '0';
 
       function updateDisplay() {
         const displayElement = document.getElementById('calculator-display');
@@ -54,10 +54,17 @@
           const exponent = prompt('Enter exponent:');
           
           if (base !== null && exponent !== null) {
-            const result = Math.pow(parseFloat(base), parseFloat(exponent));
-            displayValue = result;
+            const baseNum = parseFloat(base);
+            const expNum = parseFloat(exponent);
+            
+            if (isNaN(baseNum) || isNaN(expNum)) {
+              displayValue = 'Error';
+            } else {
+              const result = Math.pow(baseNum, expNum);
+              displayValue = result.toString();
+            }
             updateDisplay();
-            console.log(`${base}^${exponent} = ${result}`);
+            console.log(`${base}^${exponent} = ${displayValue}`);
           }
         } else {
           displayValue += operation;
