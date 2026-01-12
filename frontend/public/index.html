@@ -41,21 +41,26 @@
     <script>
       let displayValue = '';
 
-      function operationPressed(operation) {
-        if (operation === '^') {
-          const base = prompt('Enter base number:');
-          const exponent = prompt('Enter exponent:');
-          
-          if (base !== null && exponent !== null) {
-            const result = Math.pow(parseFloat(base), parseFloat(exponent));
-            displayValue = result;
-            console.log(`${base}^${exponent} = ${result}`);
-            alert(`${base}^${exponent} = ${result}`);
-          }
+      function calculatePower() {
+        const base = document.getElementById('baseInput').value;
+        const exponent = document.getElementById('exponentInput').value;
+        const resultDiv = document.getElementById('powerResult');
+        
+        if (base && exponent) {
+          const result = Math.pow(parseFloat(base), parseFloat(exponent));
+          displayValue = result;
+          console.log(`${base}^${exponent} = ${result}`);
+          resultDiv.textContent = `${base}^${exponent} = ${result}`;
+          resultDiv.style.display = 'block';
         } else {
-          displayValue += operation;
-          console.log('Operation:', operation, 'Display:', displayValue);
+          resultDiv.textContent = 'Please enter both base and exponent';
+          resultDiv.style.display = 'block';
         }
+      }
+
+      function operationPressed(operation) {
+        displayValue += operation;
+        console.log('Operation:', operation, 'Display:', displayValue);
       }
     </script>
 
@@ -64,8 +69,20 @@
   <body>
     <div id="root"></div>
     <div id="wilco"></div>
-    <button class="btn" onClick="operationPressed('^')">
-      Calculate
-    </button>
+    <div class="power-calculator" style="margin: 20px; padding: 20px; max-width: 400px; border: 1px solid #ddd; border-radius: 8px;">
+      <h3 style="margin-top: 0;">Power Calculator</h3>
+      <div style="margin-bottom: 15px;">
+        <label for="baseInput" style="display: block; margin-bottom: 5px;">Base:</label>
+        <input type="number" id="baseInput" class="form-control" placeholder="Enter base number" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+      </div>
+      <div style="margin-bottom: 15px;">
+        <label for="exponentInput" style="display: block; margin-bottom: 5px;">Exponent:</label>
+        <input type="number" id="exponentInput" class="form-control" placeholder="Enter exponent" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+      </div>
+      <button class="btn btn-primary" onClick="calculatePower()" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
+        Calculate
+      </button>
+      <div id="powerResult" style="margin-top: 15px; padding: 10px; background-color: #f8f9fa; border-radius: 4px; display: none; font-weight: bold;"></div>
+    </div>
   </body>
 </html>
