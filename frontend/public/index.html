@@ -54,7 +54,15 @@
           const exponent = prompt('Enter exponent:');
           
           if (base !== null && exponent !== null) {
-            const result = Math.pow(parseFloat(base), parseFloat(exponent));
+            const baseNum = parseFloat(base);
+            const expNum = parseFloat(exponent);
+            
+            if (isNaN(baseNum) || isNaN(expNum)) {
+              alert('Please enter valid numbers');
+              return;
+            }
+            
+            const result = Math.pow(baseNum, expNum);
             displayValue = result.toString();
             updateDisplay();
             console.log(`${base}^${exponent} = ${result}`);
@@ -97,7 +105,7 @@
     <div id="wilco"></div>
     <div style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 20px; border: 2px solid #ccc; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000;">
       <div style="margin-bottom: 10px; font-family: monospace; font-size: 24px; text-align: right; padding: 10px; background: #f0f0f0; border-radius: 4px; min-width: 200px; min-height: 40px;" id="calculator-display">0</div>
-      <button class="btn btn-primary" onClick="operationPressed('^')" style="width: 100%;">
+      <button onclick="operationPressed('^')" style="width: 100%; padding: 10px; background-color: #0d6efd; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;">
         Power (x^y)
       </button>
     </div>
