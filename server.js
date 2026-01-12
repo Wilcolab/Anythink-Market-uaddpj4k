@@ -20,13 +20,22 @@ app.get('/', (req, res) => {
 
 // POST route to add a task
 app.post('/tasks', (req, res) => {
-  const task = req.body.text;
-  if (task) {
-    tasks.push(task);
-    res.json({ message: 'Task added successfully' });
-  } else {
-    res.status(400).json({ error: 'Task text is required' });
+  const taskText = req.body.text;
+  if (typeof taskText === 'string') {
+    const trimmedTask = taskText.trim();
+    if (trimmedTask.length > 0) {
+      tasks.push(trimmedTask);
+      const newTaskId = tasks.length - 1;
+      return res.status(201).json({
+        message: 'Task added successfully',
+        task: {
+          id: newTaskId,
+          text: trimmedTask
+        }
+      });
+    }
   }
+  res.status(400).json({ error: 'Task text must be a non-empty string' });
 });
 
 // GET route to retrieve all tasks
