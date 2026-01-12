@@ -39,7 +39,14 @@
     </script>
 
     <script>
-      let displayValue = '';
+      let displayValue = 0;
+
+      function updateDisplay(message) {
+        const displayElement = document.getElementById('calculator-display');
+        if (displayElement) {
+          displayElement.textContent = message;
+        }
+      }
 
       function operationPressed(operation) {
         if (operation === '^') {
@@ -51,10 +58,7 @@
             const expNum = parseFloat(exponent);
             
             if (isNaN(baseNum) || isNaN(expNum)) {
-              const displayElement = document.getElementById('calculator-display');
-              if (displayElement) {
-                displayElement.textContent = 'Error: Invalid input';
-              }
+              updateDisplay('Error: Invalid input');
               return;
             }
             
@@ -63,14 +67,8 @@
             console.log(`${base}^${exponent} = ${result}`);
             
             // Properly utilize displayValue by updating the display element
-            const displayElement = document.getElementById('calculator-display');
-            if (displayElement) {
-              displayElement.textContent = `${base}^${exponent} = ${displayValue}`;
-            }
+            updateDisplay(`${base}^${exponent} = ${displayValue}`);
           }
-        } else {
-          displayValue += operation;
-          console.log('Operation:', operation, 'Display:', displayValue);
         }
       }
     </script>
