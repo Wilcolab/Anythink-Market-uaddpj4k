@@ -54,7 +54,15 @@
           const exponent = prompt('Enter exponent:');
           
           if (base !== null && exponent !== null) {
-            const result = Math.pow(parseFloat(base), parseFloat(exponent));
+            const baseNum = parseFloat(base);
+            const expNum = parseFloat(exponent);
+            
+            if (isNaN(baseNum) || isNaN(expNum)) {
+              alert('Please enter valid numbers');
+              return;
+            }
+            
+            const result = Math.pow(baseNum, expNum);
             displayValue = result.toString();
             updateDisplay();
             console.log(`${base}^${exponent} = ${result}`);
@@ -66,24 +74,6 @@
         }
       }
     </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <title>Anythink Market</title>
   </head>
