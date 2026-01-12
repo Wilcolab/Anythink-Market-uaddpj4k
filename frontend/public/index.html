@@ -39,7 +39,12 @@
     </script>
 
     <script>
-      let displayValue = '';
+      document.addEventListener('DOMContentLoaded', function() {
+        const calculateBtn = document.getElementById('calculateBtn');
+        if (calculateBtn) {
+          calculateBtn.addEventListener('click', calculatePower);
+        }
+      });
 
       function calculatePower() {
         const base = document.getElementById('baseInput').value;
@@ -48,7 +53,6 @@
         
         if (base && exponent) {
           const result = Math.pow(parseFloat(base), parseFloat(exponent));
-          displayValue = result;
           console.log(`${base}^${exponent} = ${result}`);
           resultDiv.textContent = `${base}^${exponent} = ${result}`;
           resultDiv.style.display = 'block';
@@ -56,11 +60,6 @@
           resultDiv.textContent = 'Please enter both base and exponent';
           resultDiv.style.display = 'block';
         }
-      }
-
-      function operationPressed(operation) {
-        displayValue += operation;
-        console.log('Operation:', operation, 'Display:', displayValue);
       }
     </script>
 
@@ -73,13 +72,13 @@
       <h3 style="margin-top: 0;">Power Calculator</h3>
       <div style="margin-bottom: 15px;">
         <label for="baseInput" style="display: block; margin-bottom: 5px;">Base:</label>
-        <input type="number" id="baseInput" class="form-control" placeholder="Enter base number" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        <input type="number" id="baseInput" placeholder="Enter base number" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
       </div>
       <div style="margin-bottom: 15px;">
         <label for="exponentInput" style="display: block; margin-bottom: 5px;">Exponent:</label>
-        <input type="number" id="exponentInput" class="form-control" placeholder="Enter exponent" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        <input type="number" id="exponentInput" placeholder="Enter exponent" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
       </div>
-      <button class="btn btn-primary" onClick="calculatePower()" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
+      <button id="calculateBtn" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
         Calculate
       </button>
       <div id="powerResult" style="margin-top: 15px; padding: 10px; background-color: #f8f9fa; border-radius: 4px; display: none; font-weight: bold;"></div>
