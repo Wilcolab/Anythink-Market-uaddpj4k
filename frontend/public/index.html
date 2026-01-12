@@ -38,8 +38,31 @@
       onStart("%REACT_APP_WILCO_ID%", "opened_locally");
     </script>
 
+    <script>
+      let displayValue = '';
 
-
+      function operationPressed(operation) {
+        if (operation === '^') {
+          const base = prompt('Enter base number:');
+          const exponent = prompt('Enter exponent:');
+          
+          if (base !== null && exponent !== null) {
+            const result = Math.pow(parseFloat(base), parseFloat(exponent));
+            displayValue = result;
+            console.log(`${base}^${exponent} = ${result}`);
+            
+            // Properly utilize displayValue by updating the display element
+            const displayElement = document.getElementById('calculator-display');
+            if (displayElement) {
+              displayElement.textContent = `${base}^${exponent} = ${displayValue}`;
+            }
+          }
+        } else {
+          displayValue += operation;
+          console.log('Operation:', operation, 'Display:', displayValue);
+        }
+      }
+    </script>
 
 
 
@@ -64,5 +87,13 @@
   <body>
     <div id="root"></div>
     <div id="wilco"></div>
+    <div style="padding: 20px;">
+      <div id="calculator-display" style="min-height: 30px; padding: 10px; border: 1px solid #ccc; margin-bottom: 10px; font-family: monospace;">
+        Ready
+      </div>
+      <button class="btn" onClick="operationPressed('^')">
+        Calculate Power (^)
+      </button>
+    </div>
   </body>
 </html>
