@@ -41,6 +41,13 @@
     <script>
       let displayValue = '';
 
+      function updateDisplay() {
+        const displayElement = document.getElementById('calculator-display');
+        if (displayElement) {
+          displayElement.textContent = displayValue || '0';
+        }
+      }
+
       function operationPressed(operation) {
         if (operation === '^') {
           const base = prompt('Enter base number:');
@@ -49,11 +56,13 @@
           if (base !== null && exponent !== null) {
             const result = Math.pow(parseFloat(base), parseFloat(exponent));
             displayValue = result;
+            updateDisplay();
             console.log(`${base}^${exponent} = ${result}`);
             alert(`${base}^${exponent} = ${result}`);
           }
         } else {
           displayValue += operation;
+          updateDisplay();
           console.log('Operation:', operation, 'Display:', displayValue);
         }
       }
@@ -64,8 +73,12 @@
   <body>
     <div id="root"></div>
     <div id="wilco"></div>
-    <button class="btn" onClick="operationPressed('^')">
-      Calculate
-    </button>
+    <div style="padding: 20px; background-color: #f0f0f0; margin: 10px; border-radius: 5px;">
+      <div style="font-size: 24px; font-weight: bold; margin-bottom: 10px;">Calculator Display:</div>
+      <div id="calculator-display" style="font-size: 32px; padding: 10px; background-color: white; border: 2px solid #333; border-radius: 3px; min-height: 50px; text-align: right;">0</div>
+      <button class="btn" onClick="operationPressed('^')" style="margin-top: 10px; padding: 10px 20px; font-size: 16px;">
+        Calculate Power (x^y)
+      </button>
+    </div>
   </body>
 </html>
