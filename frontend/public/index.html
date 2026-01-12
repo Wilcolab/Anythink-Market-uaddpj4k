@@ -63,7 +63,7 @@
               console.log('Invalid input: base or exponent is not a number');
             } else {
               const result = Math.pow(baseNum, expNum);
-              displayValue = result;
+              displayValue = String(result);
               updateDisplay();
               console.log(`${base}^${exponent} = ${result}`);
             }
