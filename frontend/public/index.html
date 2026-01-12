@@ -41,28 +41,27 @@
     <script>
       let displayValue = '';
 
-      function operationPressed(operation) {
-        if (operation === '^') {
-          const base = prompt('Enter base number:');
-          const exponent = prompt('Enter exponent:');
-          
-          if (base !== null && exponent !== null) {
-            const result = Math.pow(parseFloat(base), parseFloat(exponent));
-            displayValue = result;
-            
-            // Update the display element
-            const displayElement = document.getElementById('calculator-display');
-            if (displayElement) {
-              displayElement.textContent = displayValue;
-            }
-            
-            console.log(`${base}^${exponent} = ${result}`);
-            alert(`${base}^${exponent} = ${result}`);
-          }
-        } else {
-          displayValue += operation;
-          console.log('Operation:', operation, 'Display:', displayValue);
+      function calculatePower() {
+        const baseInput = document.getElementById('base-input');
+        const exponentInput = document.getElementById('exponent-input');
+        const displayElement = document.getElementById('calculator-display');
+        
+        const base = parseFloat(baseInput.value);
+        const exponent = parseFloat(exponentInput.value);
+        
+        // Validate inputs
+        if (isNaN(base) || isNaN(exponent)) {
+          displayElement.textContent = 'Error: Invalid input';
+          return;
         }
+        
+        const result = Math.pow(base, exponent);
+        displayValue = result.toString();
+        
+        // Update the display element
+        displayElement.textContent = displayValue;
+        
+        console.log(`${base}^${exponent} = ${result}`);
       }
     </script>
 
@@ -94,7 +93,11 @@
       <div id="calculator-display" style="padding: 10px; background: #f0f0f0; margin-bottom: 10px; min-height: 30px; font-size: 20px; text-align: right;">
         0
       </div>
-      <button class="btn" onClick="operationPressed('^')" style="padding: 10px 20px; cursor: pointer;">
+      <div style="margin-bottom: 10px;">
+        <input type="number" id="base-input" placeholder="Base" style="width: 100%; padding: 5px; margin-bottom: 5px;" />
+        <input type="number" id="exponent-input" placeholder="Exponent" style="width: 100%; padding: 5px; margin-bottom: 5px;" />
+      </div>
+      <button class="btn" onclick="calculatePower()" style="padding: 10px 20px; cursor: pointer;">
         Calculate Power (x^y)
       </button>
     </div>
