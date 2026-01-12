@@ -23,7 +23,7 @@
     "express-async-handler": "^1.2.0",
     "express-jwt": "^8.5.1",
     "express-session": "^1.18.2",
-    "jsonwebtoken": "^9.0.3",
+    "jsonwebtoken": "7.1.9",
     "method-override": "^2.3.10",
     "methods": "1.1.2",
     "mongoose": "^9.1.3",
