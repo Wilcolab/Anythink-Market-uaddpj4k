@@ -1,0 +1,13 @@
+// JavaScript: convert text to snake_case
+function toSnakeCase(text) {
+	return text
+		.replace(/([a-z0-9])([A-Z])/g, "$1_$2")
+		.replace(/[^a-zA-Z0-9]+/g, "_")
+		.replace(/^_+|_+$/g, "")
+		.toLowerCase();
+}
+
+// JavaScript: add two numbers
+function addNumbers(a, b) {
+	return a + b;
+}

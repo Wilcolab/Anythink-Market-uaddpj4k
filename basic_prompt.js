@@ -1,0 +1,1 @@
+const prompt = "Write a function called toCamelCase that converts an input string to camelCase. The function should handle spaces, hyphens, and underscores between words. Example: toCamelCase('Hello world-example') should return 'helloWorldExample'.";
